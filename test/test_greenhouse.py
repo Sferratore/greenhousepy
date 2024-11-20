@@ -55,6 +55,7 @@ class TestGreenhouse(TestCase):
     def test_sprinkler_should_be_turned_off_when_above_425(self, mock_sprinkler: Mock, mock_moisture_sensor: Mock):
         mock_moisture_sensor.return_value = 426
         system = Greenhouse()
+        system.sprinkler_on = True
         system.manage_sprinkler()
         mock_sprinkler.assert_called_once_with(system.SPRINKLER_PIN, False)
         self.assertTrue(not system.sprinkler_on)
