@@ -53,8 +53,12 @@ class Greenhouse:
         return not GPIO.input(self.PHOTO_PIN)
 
     def manage_lightbulb(self) -> None:
-        # To be implemented
-        pass
+        if GPIO.input(self.PHOTO_PIN):
+            GPIO.output(self.LED_PIN, True)
+            self.red_light_on = True
+        else:
+            GPIO.output(self.LED_PIN, False)
+            self.red_light_on = False
 
 
 class GreenhouseError(Exception):
