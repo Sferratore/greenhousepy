@@ -59,3 +59,9 @@ class TestGreenhouse(TestCase):
         system.manage_sprinkler()
         mock_sprinkler.assert_called_once_with(system.SPRINKLER_PIN, False)
         self.assertTrue(not system.sprinkler_on)
+
+    @patch.object(GPIO, "input")
+    def test_check_too_much_light(self, mock_photoresistor: Mock):
+        mock_photoresistor.return_value = False
+        system = Greenhouse()
+        self.assertTrue(system.check_too_much_light())
