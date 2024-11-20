@@ -49,8 +49,8 @@ class Greenhouse:
             self.turn_off_sprinkler()
 
     def check_too_much_light(self) -> bool:
-        # To be implemented
-        pass
+        # Return True if there is too much light, which is indicated by the photoresistor being False
+        return not GPIO.input(self.PHOTO_PIN)
 
     def manage_lightbulb(self) -> None:
         # To be implemented
